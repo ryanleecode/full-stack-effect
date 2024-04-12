@@ -9,28 +9,28 @@ importers:
   .:
     devDependencies:
       cpy:
-        specifier: '*'
+        specifier: ^11.0.1
         version: 11.0.1
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       recast:
-        specifier: '*'
+        specifier: ^0.23.6
         version: 0.23.6
       tsup:
-        specifier: '*'
+        specifier: ^8.0.2
         version: 8.0.2(typescript@5.4.5)
       tsx:
-        specifier: '*'
+        specifier: ^4.7.2
         version: 4.7.2
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
       vitest:
-        specifier: '*'
+        specifier: ^1.5.0
         version: 1.5.0
       zx:
-        specifier: '*'
+        specifier: ^8.0.1
         version: 8.0.1
 
   packages/aws:
