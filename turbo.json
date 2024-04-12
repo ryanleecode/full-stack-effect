@@ -1,0 +1,35 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**/*.ts",
+				"package.json",
+				"README.md",
+				"tsconfig.json",
+				"tsconfig.*.json",
+				"tsup.config.ts",
+				"scripts/build.ts",
+				"scripts/fix-imports.ts"
+			],
+			"outputs": ["dist/**", "dist-dts/**"],
+			"outputMode": "new-only"
+		},
+		"pack": {
+			"dependsOn": ["build"],
+			"inputs": ["dist/**"],
+			"outputs": ["package.tgz"],
+			"outputMode": "new-only"
+		},
+		"test": {
+			"dependsOn": ["build"],
+			"inputs": [
+				"tests/**/*.test.ts",
+				"tests/**/*.test.cjs",
+				"tests/**/*.test.mjs"
+			],
+			"outputMode": "new-only"
+		}
+	}
+}

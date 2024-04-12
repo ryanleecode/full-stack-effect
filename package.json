@@ -1,0 +1,18 @@
+{
+	"private": true,
+	"license": "MIT",
+	"scripts": {
+		"build": "pnpm turbo build",
+		"b": "pnpm build"
+	},
+	"devDependencies": {
+		"typescript": "^5.4.5",
+		"cpy": "*",
+		"glob": "*",
+		"recast": "*",
+		"tsx": "*",
+		"vitest": "*",
+		"zx": "*",
+		"tsup": "*"
+	}
+}
