@@ -5,3 +5,4 @@ dist.new
 dist-dts
 
 .turbo
+*.tgz

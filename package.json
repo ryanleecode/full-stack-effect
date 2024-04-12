@@ -2,6 +2,8 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
+		"pack": "pnpm -r run pack",
+		"publish": "pnpm -r run publish",
 		"build": "pnpm turbo build",
 		"b": "pnpm build"
 	},
