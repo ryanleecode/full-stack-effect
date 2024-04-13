@@ -6,28 +6,29 @@ import { UnknownException } from 'effect/Cause';
 export type S3Context = { client: S3Client; bucketName: string };
 
 const ObjectStorageClient_ = (ctx: S3Context): ObjectStorageClient => {
-	function getObject(key: string, transform: 'string'): Effect.Effect<string, UnknownException, never>;
-	function getObject(key: string, transform: 'binary'): Effect.Effect<Uint8Array, UnknownException, never>;
-	function getObject(key: string, transform: 'string' | 'binary') {
-		return Effect.gen(function*(_) {
+	function getObject(key: string, transform?: 'string'): Effect.Effect<string, UnknownException, never>;
+	function getObject(key: string, transform?: 'binary'): Effect.Effect<Uint8Array, UnknownException, never>;
+	function getObject(
+		key: string,
+		transform?: 'string' | 'binary',
+	): Effect.Effect<string | Uint8Array, UnknownException, never> {
+		return Effect.tryPromise(async (abortSignal) => {
 			const cmd = new GetObjectCommand({
 				Bucket: ctx.bucketName,
 				Key: key,
 			});
 
-			const content = yield* _(Effect.tryPromise(async (abortSignal) => {
-				const resp = await ctx.client.send(cmd, { abortSignal });
-				if (!resp.Body) throw new Error('No body in response');
+			const resp = await ctx.client.send(cmd, { abortSignal });
+			if (!resp.Body) throw new Error('No body in response');
 
-				switch (transform) {
-					case 'string':
-						return resp.Body.transformToString();
-					case 'binary':
-						return resp.Body.transformToByteArray();
-				}
-			}));
-
-			return content;
+			switch (transform) {
+				case 'string':
+					return resp.Body.transformToString();
+				case 'binary':
+					return resp.Body.transformToByteArray();
+				default:
+					return resp.Body.transformToString();
+			}
 		});
 	}
 
