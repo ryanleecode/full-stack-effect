@@ -1,4 +1,4 @@
-import { type Effect } from 'effect';
+import { Context, type Effect } from 'effect';
 import { type UnknownException } from 'effect/Cause';
 
 namespace ObjectStorageClient {
