@@ -10,6 +10,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.6.4",
 		"cpy": "^11.0.1",
+		"dprint": "^0.45.1",
+		"effect": "^3.0.0",
 		"glob": "^10.3.12",
 		"recast": "^0.23.6",
 		"tsup": "^8.0.2",

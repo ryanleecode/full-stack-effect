@@ -1,53 +1,56 @@
 {
-	"name": "@full-stack-effect/aws",
-	"version": "0.1.2",
-	"license": "MIT",
-	"type": "module",
-	"main": "./dist/index.cjs",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"publishConfig": {
-		"access": "public"
-	},
-	"scripts": {
-		"b": "pnpm build",
-		"build": "scripts/build.ts",
-		"pack": "npm pack && rm -f package.tgz && mv *.tgz package.tgz",
-		"publish": "npm publish package.tgz",
-		"test": "vitest --passWithNoTests"
-	},
-	"dependencies": {
-		"@aws-sdk/client-s3": "^3.554.*",
-		"effect": "^2.4.*"
-	},
-	"devDependencies": {
-		"@full-stack-effect/services": "workspace:*",
-		"@full-stack-effect/tsconfig": "workspace:*"
-	},
-	"exports": {
-		"./object-storage": {
-			"import": {
-				"types": "./dist/object-storage.d.ts",
-				"default": "./dist/object-storage.js"
-			},
-			"require": {
-				"types": "./dist/object-storage.d.cts",
-				"default": "./dist/object-storage.cjs"
-			},
-			"types": "./dist/object-storage.d.ts",
-			"default": "./dist/object-storage.js"
-		},
-		".": {
-			"import": {
-				"types": "./dist/index.d.ts",
-				"default": "./dist/index.js"
-			},
-			"require": {
-				"types": "./dist/index.d.cts",
-				"default": "./dist/index.cjs"
-			},
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
-		}
-	}
+  "name": "@full-stack-effect/aws",
+  "version": "0.2.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "b": "pnpm build",
+    "build": "scripts/build.ts",
+    "pack": "npm pack && rm -f package.tgz && mv *.tgz package.tgz",
+    "publish": "npm publish package.tgz",
+    "test": "vitest --passWithNoTests"
+  },
+  "peerDependencies": {
+    "@aws-sdk/client-s3": "^3.554.x",
+    "@aws-sdk/s3-request-presigner": "^3.554.x",
+    "effect": "^3.0.x"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "^3.554.0",
+    "@aws-sdk/s3-request-presigner": "^3.554.0",
+    "@full-stack-effect/services": "workspace:*",
+    "@full-stack-effect/tsconfig": "workspace:*"
+  },
+  "exports": {
+    "./object-storage": {
+      "import": {
+        "types": "./dist/object-storage.d.ts",
+        "default": "./dist/object-storage.js"
+      },
+      "require": {
+        "types": "./dist/object-storage.d.cts",
+        "default": "./dist/object-storage.cjs"
+      },
+      "types": "./dist/object-storage.d.ts",
+      "default": "./dist/object-storage.js"
+    },
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  }
 }
