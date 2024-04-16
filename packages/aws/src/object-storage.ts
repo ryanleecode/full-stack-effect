@@ -12,7 +12,7 @@ export class S3Client extends Context.Tag('s3/S3Client')<
 export class S3Config extends Context.Tag('s3/S3Config')<
   S3Config,
   {
-    readonly region: string;
+    readonly region?: string;
     readonly bucketName: string;
   }
 >() {}
