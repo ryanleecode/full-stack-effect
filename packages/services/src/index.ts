@@ -1,1 +1,1 @@
-export * from './object-storage';
+export { ObjectStorage } from './object-storage';

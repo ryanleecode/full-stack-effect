@@ -45,7 +45,7 @@ importers:
   packages/aws:
     dependencies:
       effect:
-        specifier: ^3.0.x
+        specifier: '>=3.0.0 <4.0.0'
         version: 3.0.0
     devDependencies:
       '@aws-sdk/client-s3':
@@ -63,6 +63,9 @@ importers:
 
   packages/services:
     dependencies:
+      '@std/media-types':
+        specifier: npm:@jsr/std__media-types@^0.223.0
+        version: /@jsr/std__media-types@0.223.0
       effect:
         specifier: ^3.0.x
         version: 3.0.0
@@ -1335,6 +1338,10 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
+
+  /@jsr/std__media-types@0.223.0:
+    resolution: {integrity: sha512-f/Ii1kQB765w10M0/EC1KkOgpYZVrQcCTrLkpqbWpEBEv6GMBXAzbqm9a7CeO1bL0AuW20cpPir5FGqGcUIwsA==, tarball: https://npm.jsr.io/~/7/@jsr/std__media-types/0.223.0.tgz}
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

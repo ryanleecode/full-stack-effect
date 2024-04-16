@@ -1,5 +1,6 @@
 import * as S3 from '@aws-sdk/client-s3';
 import { ObjectStorage } from '@full-stack-effect/services';
+import type { PutObjectOptions } from '@full-stack-effect/services/object-storage';
 import { type Cause, Context, Effect, Layer } from 'effect';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { toMillis, type DurationInput, millis } from 'effect/Duration';
@@ -56,12 +57,14 @@ const makeObjectStorageClient = Effect.gen(function* (_) {
   function putObject(
     key: string,
     body: string | Uint8Array | ReadableStream,
+    options: PutObjectOptions = {},
   ): Effect.Effect<void, Cause.UnknownException, never> {
     return Effect.tryPromise(async (abortSignal) => {
       const cmd = new S3.PutObjectCommand({
         Bucket: ctx.bucketName,
         Key: key,
         Body: body,
+        ContentType: options.contentType,
       });
 
       await s3.send(cmd, { abortSignal });

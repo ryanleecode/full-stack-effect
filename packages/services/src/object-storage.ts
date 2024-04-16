@@ -1,5 +1,10 @@
 import { Context, type Cause, type Effect } from 'effect';
 import type { DurationInput } from 'effect/Duration';
+import type { KnownExtensionOrType } from '@std/media-types';
+
+export type PutObjectOptions = {
+  readonly contentType?: KnownExtensionOrType;
+};
 
 export interface ObjectStorageClient {
   getObject(
@@ -14,6 +19,7 @@ export interface ObjectStorageClient {
   putObject(
     key: string,
     body: string | Uint8Array | ReadableStream,
+    options?: PutObjectOptions,
   ): Effect.Effect<void, Cause.UnknownException, never>;
 
   getPresignedUrl(
