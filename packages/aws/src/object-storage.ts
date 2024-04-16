@@ -1,6 +1,6 @@
 import * as S3 from '@aws-sdk/client-s3';
-import type { ObjectStorageClient } from '@full-stack-effect/services';
-import { type Cause, Context, Effect } from 'effect';
+import { ObjectStorage } from '@full-stack-effect/services';
+import { type Cause, Context, Effect, Layer } from 'effect';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { toMillis, type DurationInput, millis } from 'effect/Duration';
 
@@ -19,11 +19,7 @@ export class S3Config extends Context.Tag('s3/S3Config')<
 
 export const PRESIGNED_EXPIRES_IN_DEFAULT = millis(3600);
 
-export const makeObjectStorageClient: Effect.Effect<
-  ObjectStorageClient,
-  never,
-  S3Client | S3Config
-> = Effect.gen(function* (_) {
+const makeObjectStorageClient = Effect.gen(function* (_) {
   const ctx = yield* _(S3Config);
   const s3 = yield* _(S3Client);
 
@@ -94,4 +90,7 @@ export const makeObjectStorageClient: Effect.Effect<
     putObject,
     getPresignedUrl,
   };
-});
+}).pipe(Effect.withSpan('makeObjectStorageClient'));
+
+export const Live: Layer.Layer<ObjectStorage, never, S3Client | S3Config> =
+  Layer.effect(ObjectStorage, makeObjectStorageClient);

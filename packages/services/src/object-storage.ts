@@ -1,4 +1,4 @@
-import type { Cause, Effect } from 'effect';
+import { Context, type Cause, type Effect } from 'effect';
 import type { DurationInput } from 'effect/Duration';
 
 export interface ObjectStorageClient {
@@ -21,3 +21,8 @@ export interface ObjectStorageClient {
     expiresIn?: DurationInput,
   ): Effect.Effect<URL, Cause.UnknownException, never>;
 }
+
+export class ObjectStorage extends Context.Tag('ObjectStorage')<
+  ObjectStorage,
+  ObjectStorageClient
+>() {}
