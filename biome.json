@@ -1,20 +1,24 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
 	"organizeImports": {
-		"enabled": false
+		"enabled": true
 	},
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
 		"useIgnoreFile": true,
-		"defaultBranch": "master"
+		"defaultBranch": "main"
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"complexity": {
-				"noStaticOnlyClass": "off"
+			"correctness": {
+				"useYield": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "warn",
+				"noShadowRestrictedNames": "off"
 			},
 			"style": {
 				"noNonNullAssertion": "off"
